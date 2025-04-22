@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ここにタイトルを入れます</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ここにサイト説明を入れます">
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div id="container">
+
+<header>
+<h1 id="logo"><a href="index.html"><img src="images/logo.png" alt="あなたのサイト名"></a></h1>
+<div id="header-box">
+<span class="large"><i class="fa-solid fa-phone-volume"></i> 0120-000-000</span><br>
+営業日：月〜金　営業時間：9:00〜18:00
+</div>
+</header>
+
+<!--開閉メニュー-->
+<div id="menubar">
+
+<nav>
+<ul>
+<li><a href="index.html">ホーム</a></li>
+<li><a href="">銃</a>
+	<ul>
+	<li><a href="1.html">拳銃</a></li>
+	<li><a href="2.html">アサルトライフル</a></li>
+	<li><a href="3.html">変態銃</a></li>
+	<li><a href="4.html">SMG</a></li>
+	</ul>
+</li>
+<li><a href="5.html">メニュー</a></li>
+<li><a href="6.html">メニュー</a></li>
+</ul>
+</nav>
+
+<div class="sh">小さな端末でのみ表示させたい情報があれば、ここに記入して下さい。</div>
+
+</div>
+<!--/#menubar（開閉メニュー）-->
+
+<div id="contents">
+
+<main>
+
+<section>
+<h2>frame-simple1</h2>
+<ul>
+<li>画面幅900px未満で開閉メニューになります。このタイミングを変更したい場合は、js/main.jsの「const breakPoint = 900;」の900を変更して下さい。</li>
+<li>cssに、.small-screen（※ブレイクポイント未満）と.large-screen（※ブレイクポイント以上）が複数箇所ありますが、これらもmain.jsのブレイクポイントを基準に切り替わります。body要素につくclassなので、必要があればその他の表示切り替えにもご活用下さい。</li>
+<li><span class="color-check">デベロッパーツールで検証される際は、ツール切り替えの都度、必ずリロード</span>して下さい。いきなり別端末になったのと同じ状態になるので、リロードしないとメニューの挙動がおかしくなります。尚、単にブラウザ幅を変更するだけならリロードは不要です。</li>
+</ul>
+</section>
+
+</main>
+
+</div>
+<!--/#contents-->
+
+<footer>
+<small>Copyright&copy; あなたのサイト名 All Rights Reserved.</small>
+</footer>
+
+<!--以下の行はテンプレートの著作。削除しないで下さい。-->
+<span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+
+</div>
+<!--/#container-->
+
+<!--ページの上部へ戻るボタン-->
+<div class="pagetop"><a href="#"><i class="fas fa-angle-double-up"></i></a></div>
+
+<!--開閉ボタン（ハンバーガーアイコン）-->
+<div id="menubar_hdr">
+<span></span><span></span><span></span>
+</div>
+
+<!--jQueryの読み込み-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--パララックス（inview）-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+
+<!--このテンプレート専用のスクリプト-->
+<script src="js/main.js"></script>
+
+</body>
+</html>

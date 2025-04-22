@@ -1,0 +1,477 @@
+@charset "utf-8";
+
+
+
+/*Font Awesomeの読み込み
+---------------------------------------------------------------------------*/
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css");
+
+
+/*CSSカスタムプロパティ（サイト全体を一括管理する為の設定）
+---------------------------------------------------------------------------*/
+:root {
+
+	/*余白の一括管理用。主に左右の余白に使っています。2rem＝２文字分。*/
+	--content-space: 2rem;
+	
+}
+
+
+/*animation11のキーフレーム設定（汎用的）
+---------------------------------------------------------------------------*/
+@keyframes animation1 {
+	0% {left: -200px;}
+	100% {left: 0px;}
+}
+
+
+/*opa1のキーフレーム設定（汎用的）
+---------------------------------------------------------------------------*/
+@keyframes opa1 {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+
+/*全体の設定
+---------------------------------------------------------------------------*/
+body * {box-sizing: border-box;}
+html,body {
+	font-size: 13px;	/*基準となるフォントサイズ。*/
+}
+
+	/*画面幅900px以上の追加指定*/
+	@media screen and (min-width:900px) {
+
+	html, body {
+		font-size: 15px;	/*基準となるフォントサイズ。*/
+	}
+
+	}/*追加指定ここまで*/
+
+
+body {
+	margin: 0;padding:0;
+	font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Meiryo, "メイリオ", "Osaka", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;	/*フォント種類（ゴシック）*/
+	-webkit-text-size-adjust: none;
+	background: #fff;	/*背景色*/
+	color: #555;		/*文字色*/
+	line-height: 2;		/*行間*/
+	overflow-x: hidden;
+}
+
+/*リセット*/
+figure {margin: 0;}
+dd {margin: 0;}
+nav,ul,li,ol {margin: 0;padding: 0;}
+nav ul {list-style: none;}
+
+/*table全般の設定*/
+table {border-collapse:collapse;}
+
+/*画像全般の設定*/
+img {border: none;max-width: 100%;height: auto;vertical-align: middle;}
+
+/*videoタグ*/
+video {max-width: 100%;}
+
+/*iframeタグ*/
+iframe {width: 100%;}
+
+/*他*/
+input {font-size: 1rem;}
+
+/*section*/
+section {
+	padding: var(--content-space);	/*section内の余白。冒頭のcontent-spaceを読み込みます。*/
+}
+
+
+/*リンクテキスト全般の設定
+---------------------------------------------------------------------------*/
+a {
+	color: inherit;
+	transition: 0.3s;	/*hoverまでにかける時間。0.3秒。*/
+}
+
+/*マウスオン時*/
+a:hover {
+	filter: brightness(1.1);	/*少しだけ明るくする*/
+}
+
+
+/*コンテナー（サイト全体を囲むブロック）
+---------------------------------------------------------------------------*/
+#container {
+	overflow-x: hidden;
+	position: relative;
+	animation: opa1 1s 0.4s both;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	max-width: 1800px;	/*サイトの最大幅。これ以上広がらない。*/
+	margin: 0 auto;
+}
+
+
+/*header（ロゴが入った最上段のブロック）
+---------------------------------------------------------------------------*/
+/*ヘッダーブロック*/
+header {
+	padding: 1rem var(--content-space);		/*ヘッダー内の余白。上下に１文字分、左右についてはcss冒頭のcontent-spaceを読み込みます。*/
+	background: #eee;	/*背景色*/
+	color: #555;		/*文字色*/
+}
+header a {color: inherit;}
+
+body.large-screen header {
+	display: flex;	/*中のコンテンツを横並びにする*/
+	justify-content: space-between;
+	align-items: center;
+	gap: 2rem;	/*中のコンテンツ同士に空けるマージン的な余白。*/
+}
+
+/*ロゴ（※画像の場合）*/
+#logo img {
+	display: block;
+	width: 220px;	/*ロゴの幅*/
+}
+
+/*ロゴ（※テキストの場合）*/
+#logo a {text-decoration: none;}
+#logo {
+	width: auto;
+	font-size: 1.4rem;	/*文字サイズ。140%*/
+}
+
+/*ヘッダーの右側ブロック（電話番号など）*/
+#header-box {
+	font-size: 0.8rem;	/*文字サイズ80%*/
+}
+
+
+/*大きな端末で見たメニュー
+---------------------------------------------------------------------------*/
+/*メニューブロック全体の設定*/
+.large-screen #menubar > nav > ul {
+	display: flex;
+	justify-content: space-between;
+}
+
+/*メニュー１個あたりの設定*/
+.large-screen #menubar li {
+	flex: 1;
+	position: relative;	/*ドロップダウンの幅となる基準を作っておく*/
+	text-align: center;	/*テキストをセンタリング*/
+}
+.large-screen #menubar li a {
+	display: block;text-decoration: none;
+	padding: 0.5rem 0;	/*上下、左右へのメニュー内の余白*/
+	background: #777;	/*背景色*/
+	color: #fff;		/*文字色*/
+}
+
+
+/*大きな端末で見た場合のドロップダウンメニュー
+---------------------------------------------------------------------------*/
+/*ドロップダウン全体*/
+.large-screen #menubar ul ul {
+	position: absolute;z-index: 100;
+	width: 100%;
+	animation: opa1 0.5s 0.1s both;	/*0.1秒待機後、0.5秒かけてフェードイン表示*/
+}
+
+
+/*小さな端末で見たメニュー
+---------------------------------------------------------------------------*/
+/*メニューブロック共通*/
+.small-screen #menubar {
+	animation: animation1 0.2s both;
+	position: fixed;overflow: auto;z-index: 100;
+	right: 0px;top: 0px;
+	width: 100%;
+	height: 100%;
+	padding: 100px var(--content-space) 50px;		/*ブロック内の余白。上に100px、左右についてはcss冒頭のcontent-spaceを読み込む、下に50px。*/
+	background: rgba(0,0,0,0.9);	/*背景色。0,0,0は黒の事で0.9は色が90%出た状態。*/
+	color: #fff;					/*文字色。白。*/
+}
+
+.small-screen #menubar {display: none;}
+
+/*メニュー１個あたり*/
+.small-screen #menubar a {
+	display: block;text-decoration: none;
+	color: inherit;
+	border: 1px solid #fff;	/*枠線の幅、線種、色*/
+	margin-bottom: 1rem;	/*下に１文字分のスペースを空ける。メニュー同士の間隔です。*/
+	padding: 1rem 2rem;		/*メニュー内の余白。上下に１文字分、左右に２文字分。*/
+}
+
+/*子メニュー（ドロップダウンメニュー）*/
+.small-screen #menubar ul ul a {
+	border: none;
+	padding: 0;
+    margin-left: 3.8rem;	/*左に空けるスペース*/
+}
+
+/*ドロップダウンのアイコン*/
+a.ddmenu::before {
+	font-family: "Font Awesome 6 Free";
+	font-weight: bold;
+	content: "\f078";	/*このアイコンを使う*/
+	margin-right: 0.5em;	/*アイコンとメニューテキストとの間に空けるスペース。0.5文字分。*/
+}
+a.ddmenu {cursor: default;}
+
+
+/*３本バー（ハンバーガー）アイコン設定
+---------------------------------------------------------------------------*/
+#menubar_hdr {
+	display: none; /* デフォルトは非表示 */
+	animation: opa1 0s 0.2s both;
+	position: fixed;
+	z-index: 101;
+	cursor: pointer;
+	right: 0px;	/*右からの配置場所*/
+	top: 0px;	/*上からの配置場所*/
+	width: 70px;	/*ボタンの幅*/
+	height: 70px;	/*ボタンの高さ*/
+	background: #000;	/*ボタン色*/
+	border-radius: 0px 0px 0px 20px;	/*角を丸くする指定。左上、右上、右下、左下の順番。この場合は左下だけ角を丸くする。*/
+	transform-origin: right top;
+	transform: scale(1);	/*大きさを調整したい場合はここの「1」を変更します。1.2や0.7など。*/
+}
+
+/*バツ印が出ている時のボタン色*/
+#menubar_hdr.ham {
+	background: #ff0000;
+}
+
+/*ハンバーガーアイコンの線*/
+#menubar_hdr span {
+	display: block;
+	position: absolute;
+	left: 18px;
+	width: 35px;
+	height: 2px;		/*線の高さ*/
+	background: #fff;	/*線の色*/
+	transition: 0.3s;
+}
+
+#menubar_hdr span:nth-of-type(1) {
+	top: 24px;
+}
+#menubar_hdr span:nth-of-type(2) {
+	top: 34px;
+}
+#menubar_hdr span:nth-of-type(3) {
+	top: 44px;
+}
+
+/* ハンバーガーメニュー展開時 */
+#menubar_hdr.ham span:nth-of-type(1) {
+	transform: translateY(10px) rotate(-45deg);
+}
+#menubar_hdr.ham span:nth-of-type(2) {
+	opacity: 0;
+}
+#menubar_hdr.ham span:nth-of-type(3) {
+	transform: translateY(-10px) rotate(45deg);
+}
+
+/*小さな画面での設定*/
+.small-screen #menubar_hdr {
+	display: flex;
+}
+
+
+/*コンテンツ
+---------------------------------------------------------------------------*/
+/*コンテンツブロック*/
+#contents {
+	flex: 1;
+}
+
+/*コンテンツ内で使用するul,ol要素（リストタグ）*/
+#contents ul,#contents ol {
+	margin-left: 2rem;
+	margin-right: 2rem;
+}
+
+
+/*p要素（段落タグ）
+---------------------------------------------------------------------------*/
+p {
+	margin-left: 1rem;	/*左に１文字分のスペース*/
+	margin-right: 1rem;	/*右に１文字分のスペース*/
+}
+
+
+/*フッター設定
+---------------------------------------------------------------------------*/
+footer a {color: inherit;text-decoration: none;}
+footer small {font-size: 100%;}
+footer {
+	margin-top: auto;
+	font-size: 0.8rem;		/*文字サイズ。80%。*/
+	background: #eee;		/*背景色*/
+	color: #555;			/*文字色*/
+	text-align: center;		/*内容をセンタリング*/
+	padding: 1rem;	/*ボックス内の余白。１文字分。*/
+}
+
+
+/*著作部分（※意図的に見えなくしたりしないで下さい。規約違反になります。）
+---------------------------------------------------------------------------*/
+.pr a {
+	text-decoration: none;display: block;
+	background: #555;
+	color: #ccc;
+	text-align: right;
+	padding: 0.5rem 1rem;
+	font-size: 0.8rem;
+}
+.pr a::before {
+	font-family: "Font Awesome 6 Free";
+	content: "\e2ca";
+	font-weight: bold;
+	margin-right: 0.5em;
+}
+
+
+/*PAGE TOP（↑）設定
+---------------------------------------------------------------------------*/
+.pagetop-show {display: block;}
+
+/*ボタンの設定*/
+.pagetop a {
+	display: block;text-decoration: none;text-align: center;z-index: 99;
+	animation: opa1 1s 0.4s both;
+	position: fixed;	/*スクロールに追従しない(固定で表示)為の設定*/
+	right: 20px;		/*右からの配置場所指定*/
+	bottom: 20px;		/*下からの配置場所指定*/
+	color: #fff;		/*文字色*/
+	font-size: 1.5rem;	/*文字サイズ*/
+	background: rgba(0,0,0,0.2);	/*背景色。0,0,0は黒の事で0.2は色が20%出た状態。*/
+	width: 60px;		/*幅*/
+	line-height: 60px;	/*高さ*/
+	border-radius: 50%;	/*円形にする*/
+}
+
+
+/*余白調整用
+---------------------------------------------------------------------------*/
+section.padding0 {
+	padding: 0;
+}
+div.padding0 {
+	margin-left: calc(-1 * var(--content-space));
+	margin-right: calc(-1 * var(--content-space));
+}
+
+
+/*その他
+---------------------------------------------------------------------------*/
+.clearfix::after {content: "";display: block;clear: both;}
+.color-check, .color-check a {color: #ff0000 !important;}
+.l {text-align: left !important;}
+.c {text-align: center !important;}
+.r {text-align: right !important;}
+.ws {width: 95%;display: block;}
+.wl {width: 95%;display: block;}
+.mb0 {margin-bottom: 0px !important;}
+.mb30 {margin-bottom: 30px !important;}
+.look {display: inline-block;padding: 0px 10px;background: #eee;border: 1px solid #ccc; color: #888; border-radius: 3px;margin: 5px 0; word-break: break-all;}
+.small {font-size: 0.75em;}
+.large {font-size: 2em; letter-spacing: 0.1em;}
+.pc {display: none;}
+.dn {display: none !important;}
+.block {display: block !important;}
+
+/*大きな画面の場合*/
+.large-screen .ws {width: 48%;display: inline;}
+.large-screen .sh {display: none;}
+.large-screen .pc {display: block;}
+/*list-normal3-parts
+---------------------------------------------------------------------------*/
+.list-normal3-parts .list-parts * {margin: 0;padding: 0;}
+
+/*ボックス１個あたり*/
+.list-normal3-parts .list-parts {
+	position: relative;
+	overflow: hidden;
+	padding: 1.5rem;		/*ボックス内の余白*/
+	background: #fff;		/*背景色*/
+	color: #555;			/*文字色*/
+	border: 1px solid #ccc;	/*枠線の幅、線種、色*/
+	margin-bottom: 2rem;	/*ボックス同士の余白*/
+}
+
+/*ボックス内のfigure画像*/
+.list-normal3-parts .list-parts figure {
+	margin-bottom: 0.5rem;	/*見出しの下に0.5文字分のスペースを空ける*/
+}
+
+/*ボックス内のh4見出し*/
+.list-normal3-parts .list-parts h4 {
+	font-size: 1.3rem;	/*文字サイズ130%*/
+	margin-bottom: 0.5rem;	/*見出しの下に0.5文字分のスペースを空ける*/
+}
+
+/*ボックス内のp要素*/
+.list-normal3-parts .list-parts p {
+	font-size: 0.9rem;	/*文字サイズを90%*/
+	line-height: 1.6;	/*行間を少し狭く*/
+}
+
+	/*画面幅500px以上の追加指定*/
+	@media screen and (min-width:500px) {
+
+	/*ボックス１個あたり*/
+	.list-normal3-parts .list-parts {
+		display: flex;	/*横並びにする*/
+		gap: 1.5rem;	/*左の画像と右のテキストとの間のマージン的な余白*/
+	}
+	
+	/*ボックス内のfigure画像*/
+	.list-normal3-parts .list-parts figure {
+		margin-bottom: 0;	/*見出しの下のマージンをリセット*/
+		width: 30%;			/*画像の幅*/
+	}
+
+	/*テキストを囲むブロック*/
+	.list-normal3-parts .list-parts .text-parts {
+		flex: 1;
+	}
+
+	}/*追加指定ここまで*/
+
+
+/*アイコン
+---------------------------------------------------------------------------*/
+/*共通*/
+.list-normal3-parts .icon-bg1-parts,
+.list-normal3-parts .icon-bg2-parts {
+	overflow: hidden;
+	position: absolute;
+	left: 0px;		/*左からの配置場所*/
+	top: 0px;		/*上からの配置場所*/
+	font-size: 0.7rem;	/*文字サイズ。70%*/
+	width: 10rem;		/*幅。10文字分*/
+	padding-top: 2rem;	/*テキストの上にとる余白。2文字分。*/
+	text-align: center;	/*テキストをセンタリング*/
+	transform: rotate(-45deg) translate(-2.4rem,-3rem);	/*反時計回りに45度回転、X軸に-2.4文字分、Y軸に-3文字分移動。*/
+}
+
+/*icon-bg1-parts（サンプルだと「NEW」）*/
+.list-normal3-parts .icon-bg1-parts {
+	background: #ff3535;	/*背景色*/
+	color: #fff;			/*文字色*/
+}
+
+/*icon-bg2-parts（サンプルだと「UP」）*/
+.list-normal3-parts .icon-bg2-parts {
+	background: #358bff;	/*背景色*/
+	color: #fff;			/*文字色*/
+}
+
